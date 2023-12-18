@@ -9,6 +9,8 @@ Prerequisites:- You require a machine that supports Linux and has VMX virtualiza
 
 Assignment Details:- CPUID emulation code in KVM is modified to report back additional information when special CPUID leaf nodes are requested.  
 
+Pushed the code to the forked linux repository also: https://github.com/shireesh20/linux 
+
 ## Steps to run the code
 
 #### Step-1
@@ -105,10 +107,35 @@ You can also write a C or Python program to run these tests. Sample file is atta
 
 ### 3. Comment on the frequency of exits – does the number of exits increase at a stable rate? Or are there more exits performed during certain VM operations? Approximately how many exits does a full VM boot entail?
 
+* Ran the test C file for 5 times in 5 sec i.e, running once every sec and the following output is seen  
+<img width="854" alt="Screenshot 2023-12-17 at 9 13 15 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/6ba0fbf3-035b-4f5e-88c2-163a6dc246e0">
+
+The first call reported 6240492 exits.  
+The second call reported 6241334 exits, an increase of 842.  
+The third call reported 6242201 exits, an increase of 867.  
+The fourth call reported 6243003 exits, an increase of 802.  
+The fifth call reported 6243790 exits, an increase of 787.  
+This indicates that the number of exits is increasing at an almost steady rate.  
+
+* To test the number of exits that occur during reboot, we  first ran CPUID with 0x4FFFFFFF and noted the number of exits before reboot  
+<img width="649" alt="Screenshot 2023-12-17 at 9 33 44 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/9c648694-d7af-437c-bf07-2c0b6f6931e4">
+
+We see, number of exits before reboot = 6400562  
+Then we performed a reboot in inner VM and noted the number of exits after the reboot  
+<img width="663" alt="Screenshot 2023-12-17 at 9 34 55 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/5abf2390-b316-44f2-998a-103bd84aeeff">
+
+We see, the number of exits after reboot = 7855940
+
+Hence, approximately 1455378 exits occurred during the reboot process. This is an approximate figure and may vary from system to system.
    
 ### 4. Of the exit types defined in the SDM, which are the most frequent? Least?
+To verify this, we have used the test_top_exits.c file that is uploaded to the repository. We have run the CPUID with %eax = 0x4FFFFFFD and ecx ranging from 0 to 75. Below is the output:
 
+<img width="336" alt="Screenshot 2023-12-17 at 9 49 13 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/efbf9416-fed1-464d-b153-7d68b3ba2b5e">
+<img width="324" alt="Screenshot 2023-12-17 at 9 49 24 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/611b4ba1-6121-425d-a47e-4301359bd90f">
 
+We observed that ecx 30 had the most number of exits followed by 28, 49, 10 and 32.  
+Many ecx values had 0 exits. All of them can be considered least.
 ## Output Screenshots
 
 Tested using the C file(test.c) uploaded in the repository.  
