@@ -118,3 +118,12 @@ Running ./a.out will run the CPUID with %eax = 0x4FFFFFFF and %eax = 0x4FFFFFFE
 Running ./a.out <ecx> will run CPUI with %eax = 0x4FFFFFFD and %eax = 0x4FFFFFFC and the provided ecx value. 
 <img width="855" alt="Screenshot 2023-12-17 at 7 10 39 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/a09b539a-2398-4b71-9df7-0aed82d4cb79">
 
+If the ecx is out of range or undefined, it will return 0's for %eax, %ebx, %ecx and it will return 0xFFFFFFFF for %edx  
+<img width="820" alt="Screenshot 2023-12-17 at 7 41 54 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/b900515b-caed-40ef-8ec1-fa1cbce91800">
+
+
+Corresponding logs in demsg,
+<img width="855" alt="Screenshot 2023-12-17 at 7 10 39 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/daf73e52-80f7-4661-83e1-4973be1928e8">
+
+
+<img width="836" alt="Screenshot 2023-12-17 at 7 32 20 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/b67a5274-c706-42eb-aca6-112024b26348">
