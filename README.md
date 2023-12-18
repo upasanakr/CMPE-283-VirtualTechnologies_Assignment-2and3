@@ -44,6 +44,8 @@ Upasana -She started with enabling SSH authentication on the Google Cloud VM usi
 ```vi vmx.c```, change the code of how the exits are handled in vmx_handle_exit and __vmx_handle_exit functions to include the functionality of counting the number of exits, time taken for the exit in cpu cycles
 #### Step-5  
 Run ```sudo make -j 8 module```  
+<img width="1472" alt="Screenshot 2023-12-17 at 10 18 09 PM" src="https://github.com/upasanakr/CMPE-283-VirtualTechnologies_Assignment-2and3/assets/37268397/d67105dc-8832-4596-ab82-6cc2baae5208">  
+
 If there is any error at init.c, run the below commands:
 
 ```
